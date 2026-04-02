@@ -8,37 +8,67 @@ import javax.swing.InputMap;
 
 public class Main {
 
+	
+	public static void validate(int val) throws CustomExceptions
+	{
+		if(val<=0)
+		{
+			throw new CustomExceptions("The value is below or equal to 0!");
+		}
+	}
+	
 	public static void main(String[] args) {
-		Ducks duckTest = new Ducks();
+		Ducks ducks;
+		Segments segments;
+		
 		File input = new File("natatie.in");
 		try {
 			int i;
 			Scanner scanner = new Scanner(input);
 			ArrayList<Integer> speeds = new ArrayList<Integer>();
 			ArrayList<Integer> resistances = new ArrayList<Integer>();
+			ArrayList<Integer> lenghts = new ArrayList<Integer>(); 
+			
 			int noDucks;
-			int segments;
+			int noSegments;
+			int temp;
 			
 			noDucks=scanner.nextInt();
-			segments=scanner.nextInt();
+			validate(noDucks);
+			noSegments=scanner.nextInt();
+			validate(noSegments);
 			
 			for (i=0;i<noDucks;i++)
 			{
-				speeds.add(scanner.nextInt());
+				temp=scanner.nextInt();
+				validate(temp);
+				speeds.add(temp);
 			}
 			
 			for (i=0;i<noDucks;i++)
 			{
-				resistances.add(scanner.nextInt());
+				temp=scanner.nextInt();
+				validate(temp);
+				resistances.add(temp);
 			}
 			
-			duckTest = new Ducks(noDucks, speeds, resistances);
+			for(i=0;i<noSegments;i++)
+			{
+				temp=scanner.nextInt();
+				validate(temp);
+				lenghts.add(temp);
+			}
 			
-			duckTest.show();
+			ducks = new Ducks(noDucks, speeds, resistances);
+			ducks.show();
+			
+			segments=new Segments(noSegments, lenghts);
+			segments.show();
 			
 		} catch (FileNotFoundException e) {
-			
 			System.out.println("Fatal error: file not found");
+		} catch (CustomExceptions e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

@@ -14,16 +14,15 @@ public class Ducks {
 	
 	public Ducks(int noDucks, ArrayList<Integer> speeds, ArrayList<Integer> resistances) 
 	{	
-		if(noDucks>0)
-		{
 		this.noDucks=noDucks;
-		}
-		else
+		for (int i:speeds)
 		{
-			countError(noDucks);
+			this.speeds.add(i);
 		}
-		this.speeds=speeds;
-		this.resistances=resistances;
+		for(int i:resistances)
+		{
+			this.resistances.add(i);
+		}
 	}
 	
 	void show()
@@ -33,22 +32,9 @@ public class Ducks {
 			int i;
 			System.out.println("Number of ducks: "+noDucks);
 			System.out.println("Speeds: ");
-			for(int speed:speeds)
-			{
-				System.out.print(speed+ " ");
-			}
-			System.out.println();
+			System.out.println(speeds);
 			System.out.println("Resistances: ");
-			for(int resistance:resistances)
-			{
-				System.out.print(resistance+ " ");
-			}
+			System.out.println(resistances);
 		}
-	}
-	
-	private void countError(int noDucks)
-	{
-		System.out.println("The number of ducks you introduced is: "+noDucks+"\nWhich is an invalid value, no value will be passed to the current ducks");
-		valid=false;
 	}
 }
